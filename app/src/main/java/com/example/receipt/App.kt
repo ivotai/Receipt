@@ -3,6 +3,7 @@ package com.example.receipt
 import androidx.multidex.MultiDexApplication
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
+import org.koin.dsl.bind
 import org.koin.dsl.module
 
 class App : MultiDexApplication() {
@@ -17,7 +18,7 @@ class App : MultiDexApplication() {
     }
 
     private val appModule = module {
-        single<BaseUrl> { BaseUrlImpl() }
+        single<BaseUrl>{ BaseUrlImpl() }
     }
 }
 

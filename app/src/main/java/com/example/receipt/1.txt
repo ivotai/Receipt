@@ -3,4 +3,6 @@
 重新生成登录用 token
 分享项目并上传，创建项目成功，push失败，多次重启加速器后成功
 
+koin named 用法参考
+https://insert-koin.io/docs/reference/koin-core/definitions
 

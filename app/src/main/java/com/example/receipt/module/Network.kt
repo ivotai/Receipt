@@ -12,7 +12,6 @@ import java.util.concurrent.TimeUnit
 
 val networkModule = module {
 
-
     single {
         OkHttpClient.Builder()
             .readTimeout(30000, TimeUnit.SECONDS)

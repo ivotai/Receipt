@@ -8,7 +8,7 @@ import retrofit2.Retrofit
 
 class MainActivity : AppCompatActivity() {
 
-    val retrofit by inject<Retrofit>()
+    private val retrofit by inject<Retrofit>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

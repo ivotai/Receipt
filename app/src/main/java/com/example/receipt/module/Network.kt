@@ -1,9 +1,9 @@
 package com.example.receipt.module
 
-import com.example.receipt.BaseUrl
-import com.example.receipt.BaseUrlImpl
+import com.example.receipt.baseUrl
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
+import org.koin.core.qualifier.named
 import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
@@ -11,7 +11,6 @@ import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
 val networkModule = module {
-
 
 
     single {
@@ -38,7 +37,7 @@ val networkModule = module {
 
     single {
         Retrofit.Builder()
-            .baseUrl(get<BaseUrl>().value)
+            .baseUrl(get<String>(named(baseUrl)))
             .client(get())
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .addConverterFactory(GsonConverterFactory.create())

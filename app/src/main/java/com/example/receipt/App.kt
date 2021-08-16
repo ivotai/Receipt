@@ -1,9 +1,9 @@
 package com.example.receipt
 
 import androidx.multidex.MultiDexApplication
+import com.example.receipt.module.networkModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
-import org.koin.dsl.bind
 import org.koin.dsl.module
 
 class App : MultiDexApplication() {
@@ -13,13 +13,14 @@ class App : MultiDexApplication() {
 
         startKoin {
             androidContext(this@App)
-            modules(appModule)
+            modules(appModule, networkModule)
         }
     }
 
     private val appModule = module {
-        single<BaseUrl>{ BaseUrlImpl() }
+        single<BaseUrl> { BaseUrlImpl() }
     }
+
 }
 
 
@@ -28,5 +29,5 @@ interface BaseUrl {
 }
 
 class BaseUrlImpl : BaseUrl {
-    override val value = "www.baidu.com"
+    override val value = "https://www.baidu.com/"
 }

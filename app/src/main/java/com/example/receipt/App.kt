@@ -15,7 +15,6 @@ class App : MultiDexApplication() {
         super.onCreate()
 
         startKoin {
-            androidLogger()
             androidContext(this@App)
             modules(appModule, networkModule)
         }

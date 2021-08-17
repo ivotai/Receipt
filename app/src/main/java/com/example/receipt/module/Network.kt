@@ -13,6 +13,7 @@ import java.util.concurrent.TimeUnit
 val networkModule = module {
 
     single {
+
         OkHttpClient.Builder()
             .readTimeout(30000, TimeUnit.SECONDS)
             .connectTimeout(30000, TimeUnit.SECONDS)
@@ -32,15 +33,18 @@ val networkModule = module {
                 level = HttpLoggingInterceptor.Level.BODY
             })
             .build()
+
     }
 
     single {
+
         Retrofit.Builder()
             .baseUrl(get<String>(named(baseUrl)))
             .client(get())
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .addConverterFactory(GsonConverterFactory.create())
             .build()
+
     }
 
 }

@@ -1,6 +1,8 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
+    id 'kotlin-android-extensions'
+    id  'kotlin-kapt'
 }
 
 android {
@@ -63,5 +65,7 @@ dependencies {
     implementation("io.reactivex.rxjava3:rxkotlin:3.0.1")
     implementation 'com.jakewharton.rxbinding4:rxbinding:4.0.0'
 
+    // rxlife
+    implementation 'com.github.liujingxing.rxlife:rxlife-rxjava3:2.1.0'
 
 }

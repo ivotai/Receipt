@@ -1,12 +1,14 @@
 package com.example.receipt
 
-import androidx.appcompat.app.AppCompatActivity
+import android.content.Intent
 import android.os.Bundle
-import jxl.LabelCell
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.FileProvider
+import com.blankj.utilcode.util.IntentUtils
+import com.blankj.utilcode.util.UriUtils
 import jxl.Workbook
 import jxl.write.Label
 import org.koin.android.ext.android.inject
-import org.koin.core.qualifier.named
 import retrofit2.Retrofit
 import java.io.File
 
@@ -21,17 +23,37 @@ class MainActivity : AppCompatActivity() {
         retrofit
         retrofit
 
-        s()
+        s2()
+        s1()
+    }
+
+    private fun s1(){
+        val dir = File(filesDir, "excel")
+        val file = File(dir,"测试.xls")
+        val uri = FileProvider.getUriForFile(this,"com.example.receipt.fileprovider",file)
+//        val uri= UriUtils.file2Uri(file)
+        val intent = Intent().apply {
+            action = Intent.ACTION_SEND
+            putExtra(Intent.EXTRA_STREAM,uri)
+            type = "application/vnd.ms-excel"
+        }
+
+        intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+        startActivity(Intent.createChooser(intent,"测试标题"))
+
     }
 
 
-    private fun s(){
-        val file = File(cacheDir,"2.xls")
+    private fun s2() {
+        val dir = File(filesDir, "excel")
+        dir.mkdir()
+        val file = File(dir,"测试.xls")
         val workbook = Workbook.createWorkbook(file)
-        val sheet = workbook.createSheet("测试",0)
-        val label = Label(0,0,"hehe")
+        val sheet = workbook.createSheet("测试", 0)
+        val label = Label(0, 0, "测试")
         sheet.addCell(label)
         workbook.write()
         workbook.close()
     }
+
 }
